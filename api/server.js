@@ -13,7 +13,7 @@ server.use('/api/auth', authRouter)
 // server.use('/api/articles', authenticate, articleRouter)
 
 server.get("/", (req, res) => {
-    res.send("Hello, your API is up!")
+    res.status(200).json({message:"Hello, your API is up!"})
 })
 
 module.exports = server
