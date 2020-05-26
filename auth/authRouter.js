@@ -68,12 +68,4 @@ function createToken(user){
      return jwt.sign(payload, jwtSecret, options)
 }
 
-// .then(res => {
-//     res.status(200).json({ data:res })
-// })
-// .catch(error => {
-//     res.status(500).json({ message: "Internal Server Error" })
-// })
-
-
 module.exports = router
