@@ -133,13 +133,13 @@ Url: /api/articles
         "id": 1,
         "name": "Article Name 1",
         "article": "Article 1",
-        "isSaved": 0
+        "isSaved": false
     },
     {
         "id": 2,
         "name": "Article Name 2",
         "article": "Article 2",
-        "isSaved": 0
+        "isSaved": false
     }
 ]
 ```
@@ -171,7 +171,7 @@ Url: /api/articles
 {
     "name":"Article Name 3",
     "article":"Article 3",
-    "isSaved": 0
+    "isSaved": false
 }
 ```
 ### Responses:
@@ -185,7 +185,7 @@ Url: /api/articles
         "id": 1,
         "name": "Article Name 1",
         "article": "Article 1",
-        "isSaved": 0
+        "isSaved": false
 }
 ```
 
