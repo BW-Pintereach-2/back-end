@@ -9,8 +9,8 @@ exports.up = function(knex) {
   })
   .createTable('Articles', tbl => {
     tbl.increments('id')
-    tbl.string('name', 255).notNullable().unique()
-    tbl.string('article').notNullable()
+    tbl.text('name', 255).notNullable().unique()
+    tbl.text('article').notNullable()
     tbl.boolean('isSaved').defaultTo(false)
   })
   .createTable('Categories', tbl => {
