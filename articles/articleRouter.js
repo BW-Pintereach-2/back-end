@@ -13,6 +13,17 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    Articles.findById(id)
+    .then(article => {
+        res.status(200).json({ data: article })
+    })
+    .catch(error => {
+        res.status(500).json({ message: "Internal Server Error" })
+    })
+})
+
 router.post('/', (req, res) => {
     const article = req.body
 
@@ -20,7 +31,7 @@ router.post('/', (req, res) => {
         Articles.insert(article)
         .then(([id]) => {
             return Articles.findById(id).then(article => {
-                return res.status(201).json({ data:article })
+                return res.status(201).json({ data: article })
             })
         })
         .catch(error => {

@@ -152,7 +152,37 @@ Url: /api/articles
 }
 ```
 ***
-### Create an article (restricted)
+
+### Get Article by ID (restricted)
+
+HTTP Request: GET
+
+Url: /api/articles/:id
+
+### Responses:
+
+#### 200 (Succesful)
+
+> Will recieve a 200 response with an article of that ID
+```javascript
+{
+    "id": 1,
+    "name": "Article Name 1",
+    "article": "Article 1",
+    "isSaved": false
+}
+```
+
+#### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Internal Server Error"
+}
+```
+***
+
+### Post an article (restricted)
 
 HTTP Request: POST
 
