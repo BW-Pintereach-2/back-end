@@ -114,7 +114,7 @@ URL: /api/auth/login
 ```
 ***
 
-### Delete a user (Unrestricted)
+### Delete a user (restricted)
 
 HTTP Request: DELETE
 
