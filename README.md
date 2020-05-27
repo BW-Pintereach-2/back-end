@@ -132,7 +132,7 @@ URL: /api/users/:id
 }
 ```
 
-### 404 (User Not Found)
+#### 404 (User Not Found)
 
 > Will recieve a 404 response if there is no user found
 
