@@ -3,6 +3,7 @@ const helmet = require('helmet')
 
 const articleRouter = require('../articles/articleRouter')
 const authRouter = require('../auth/authRouter')
+const categoriesRouter = require('../categories/categoriesRouter')
 const authenticate = require('../auth/authenticate-middleware')
 const server = express()
 
@@ -11,6 +12,7 @@ server.use(express.json())
 
 server.use('/api/auth', authRouter)
 server.use('/api/articles', authenticate, articleRouter)
+server.use('/api/categories', authenticate, categoriesRouter)
 
 server.get("/", (req, res) => {
     res.status(200).json({message:"Hello, your API is up!"})

@@ -11,10 +11,11 @@ function find(){
 }
 
 function insert(article){
-    console.log(article)
     return db('Articles').insert(article, "id")
 }
 
 function findById(id){
     return db("Articles").where({ id }).first()
 }
+
+

@@ -235,4 +235,156 @@ Url: /api/articles
   "message": "Internal Server Error"
 }
 ```
+***
 
+### Get an article with categories (restricted)
+
+HTTP Request: GET
+
+Url: /api/articles/:id/categories
+
+### Responses:
+
+#### 200 (Successful)
+
+> Will recieve a 200 response with the articles if successful
+```javascript
+        {
+            "id": 1,
+            "Category": "Technology",
+            "name": "What is Lorem Ipsum?",
+            "article": "Lorem Ipsum....",
+            "isSaved": 0
+        },
+```
+
+#### 400 (Bad Request)
+
+> Will recieve a 400 response if there is no categories for the article
+```javascript
+{
+    "message": "this article has no categories"
+}
+```
+
+#### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Internal Server Error"
+}
+```
+***
+
+### Post an article with a category (restricted)
+
+HTTP Request: POST
+
+Url: /api/articles/:id/categories
+
+### Responses:
+
+#### 201 (Created)
+
+> Will recieve a 200 response with the articles if successful
+```javascript
+{
+    "message":"Category added to article!"
+},
+```
+
+#### 400 (Bad Request)
+
+> Will recieve a 400 response if category is not valid
+```javascript
+{
+    "message": "please provide a valid category"
+}
+```
+
+#### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Internal Server Error"
+}
+```
+***
+
+# Category Routes
+
+### get categories (restricted)
+
+HTTP Request: GET
+
+Url: /api/articles/categories
+
+### Responses:
+
+#### 200 (Successful)
+
+> Will recieve a 200 response with the articles if successful
+```javascript
+[
+    {
+        "name": "Technology"
+    },
+    {
+        "name": "Art"
+    },
+    {
+        "name": "Finances"
+    },
+    {
+        "name": "Fiction"
+    },
+    {
+        "name": "Automotive"
+    },
+    {
+        "name": "Science"
+    },
+]
+```
+#### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Internal Server Error"
+}
+```
+***
+
+### Post a new category (restricted)
+
+HTTP Request: POST
+
+Url: /api/articles/categories
+
+### Responses:
+
+#### 201 (Created)
+
+> Will recieve a 201 response with the category if successful
+```javascript
+{
+    "name": "Music"
+}
+```
+
+#### 400 (Bad Request)
+
+> Will recieve a 400 response if category is not valid
+```javascript
+{
+    "message": "please provide a valid category"
+}
+```
+
+#### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Internal Server Error"
+}
+```

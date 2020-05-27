@@ -3,6 +3,7 @@ module.exports = {
     isUserWithEmailValid,
     isUserValid,
     isArticleValid,
+    isCategoryValid
 }
 
 function isUserValid(user){
@@ -15,4 +16,8 @@ function isUserWithEmailValid(user){
 
 function isArticleValid(article){
     return Boolean(article.name && article.article)
+}
+
+function isCategoryValid(category){
+    return Boolean(category.name && typeof category.name === "string")
 }
