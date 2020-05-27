@@ -55,7 +55,7 @@ Url: /api/auth/register
 ```
 ***
 
-### Login
+### Login (Unrestricted)
 
 HTTP Request: POST
 
@@ -102,6 +102,43 @@ URL: /api/auth/login
 ```javascript
 {
     "message": "username or password does not match."
+}
+```
+
+#### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Internal Server Error"
+}
+```
+***
+
+### Delete a user (Unrestricted)
+
+HTTP Request: DELETE
+
+URL: /api/users/:id
+
+### Responses:
+
+#### 200 (Successful)
+
+> Will recieve a 200 response with the user token if the request is successful
+
+```javascript
+{
+    "message": "user deleted"
+}
+```
+
+### 404 (User Not Found)
+
+> Will recieve a 404 response if there is no user found
+
+```javascript
+{
+    "message": "user not found"
 }
 ```
 
