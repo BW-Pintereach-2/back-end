@@ -28,9 +28,8 @@ module.exports = {
       filename: "./database/test.db3",
     },
     pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done);
-      },
+      min:2,
+      max:10
     },
     useNullAsDefault: true,
     migrations: {
