@@ -3,7 +3,7 @@ const supertest = require('supertest')
 const db = require('../database/dbConfig')
 
 const config = {
-    specific: "001-articles"
+    specific: "001-articles 002-categories 003-article_categories"
 }
 
 beforeEach(() => {
@@ -23,6 +23,7 @@ async function Login(){
 
 
 // TESTING
+
 describe('server', () => {
     it('can run the test', () => {
         expect(true).toBeTruthy()
@@ -152,7 +153,7 @@ describe('server', () => {
     })
 
     // post an individual article
-    describe('GET / article by id', () => {
+    describe('POST / article by id', () => {
         it('should return successful', async () => {
             const token = await Login()
             const res = await supertest(server)
@@ -172,16 +173,16 @@ describe('server', () => {
             expect(res.body).toMatchObject({ message: "please provide name and article" })
         })
     })
-    // get an
-    describe('GET / article by id', () => {
+
+    // get an article by categories
+    describe('GET / article by categories', () => {
         it('should return successful', async () => {
             const token = await Login()
             const res = await supertest(server)
-            .post("/api/articles")
-            .send({ name:"yoyo", article:"wassup" })
+            .get("/api/articles/1/categories")
             .set('authorization', token)
-            expect(res.status).toBe(201)
-            expect(res.body.data).toMatchObject({ article: "wassup", id: 4, isSaved: 0, name: "yoyo" })
+            expect(res.status).toBe(200)
+            expect(res.body.data).toMatchObject([{"Category": "Technology", "article": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", "id": 1, "isSaved": 0, "name": "What is Lorem Ipsum?"}])
         })
         it('should return unsuccessful', async () => {
             const token = await Login()
@@ -191,6 +192,66 @@ describe('server', () => {
             .set('authorization', token)
             expect(res.status).toBe(400)
             expect(res.body).toMatchObject({ message: "please provide name and article" })
+        })
+    })
+
+    // add an article by categories
+    describe('POST / article by categories', () => {
+        it('should return successful', async () => {
+            const token = await Login()
+            const res = await supertest(server)
+            .post("/api/articles/1/categories")
+            .send({name: "Art"})
+            .set('authorization', token)
+            expect(res.status).toBe(201)
+            expect(res.body).toMatchObject({ message: "Category added to article!" })
+        })
+        it('should return unsuccessful', async () => {
+            const token = await Login()
+            const res = await supertest(server)
+            .post("/api/articles/1/categories")
+            .send({name: ''})
+            .set('authorization', token)
+            expect(res.status).toBe(400)
+            expect(res.body).toMatchObject({ message: "please provide a valid category" })
+        })
+    })
+
+// CATEGORY ENDPOINTS
+
+    // get categories
+    describe('GET / Categories', () => {
+        it('should return successful', async () => {
+            const token = await Login()
+            const res = await supertest(server)
+            .get("/api/categories")
+            .set('authorization', token)
+            expect(res.status).toBe(200)
+            expect(Array.isArray(res.body.data)).toBeTruthy()
+        })
+        it('should return unauthorized', async () => {
+            const res = await supertest(server)
+            .get("/api/categories")
+            expect(res.status).toBe(401)
+            expect(res.body).toMatchObject({ message: "authentication error, cannot pass"})
+        })
+    })
+
+    // post categories
+    describe('POST / Categories', () => {
+        it('should return successful', async () => {
+            const token = await Login()
+            const res = await supertest(server)
+            .get("/api/categories")
+            .set('authorization', token)
+            expect(res.status).toBe(200)
+            expect(Array.isArray(res.body.data)).toBeTruthy()
+        })
+        it('should return unauthorized', async () => {
+            const res = await supertest(server)
+            .get("/api/categories")
+            expect(res.status).toBe(401)
+            expect(res.body).toMatchObject({ message: "authentication error, cannot pass"})
         })
     })
 })

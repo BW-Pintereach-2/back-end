@@ -15,7 +15,7 @@ function isUserWithEmailValid(user){
 }
 
 function isArticleValid(article){
-    return Boolean(article.name && article.article)
+    return Boolean(article.name && article.article && typeof article.article === "string")
 }
 
 function isCategoryValid(category){

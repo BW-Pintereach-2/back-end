@@ -52,7 +52,6 @@ router.get('/:id/categories', (req, res) => {
 
     Categories.findArticleWithCategory(id)
     .then(article => {
-        console.log(article)
         if(article.length > 0){
             res.status(200).json({ data: article })
         } else {

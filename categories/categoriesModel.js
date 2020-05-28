@@ -42,6 +42,7 @@ function findByCategoryId(id){
 function insertCategory(category, id){
     return findByCategory(category)
     .then(res => {
+        console.log(res)
         return db("Article_Category as AC")
         .select(
             'A.id',
