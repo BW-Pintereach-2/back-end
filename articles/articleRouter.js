@@ -45,6 +45,19 @@ router.post('/', (req, res) => {
     }
 })
 
+router.patch('/:id', (req, res) => {
+    const id  = req.params.id
+    const { isSaved } = req.body
+
+    console.log(isSaved , id)
+    Articles.update(isSaved, id).then(() => {
+        res.status(200).json({ message: "updated" })
+    })
+    .catch(() => {
+        res.status(500).json({ message: "Internal Server Error" })
+    })
+})
+
 // categories
 
 router.get('/:id/categories', (req, res) => {

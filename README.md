@@ -273,6 +273,37 @@ Url: /api/articles
 }
 ```
 ***
+### Update saved on an article (restricted)
+
+HTTP Request: PATCH
+
+Url: /api/articles/:id
+
+#### Example:
+```javascript
+{
+    "isSaved": true
+}
+```
+### Responses:
+
+#### 200 (Successful)
+
+> Will recieve a 201 response with the newly created article if successful
+```javascript
+{
+    "message": "updated"
+}
+```
+
+#### 500 (Internal Server Error)
+> Will receive a 500 response if there is a problem with the server
+```javascript
+{
+  "message": "Internal Server Error"
+}
+```
+***
 
 ### Get an article with categories (restricted)
 
